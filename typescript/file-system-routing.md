@@ -44,7 +44,7 @@ export const requestEndpoint = async (req: Request, res: Response, next: NextFun
       : {};
   });
 
-  const { file = "", body = {} } = modifiedFiles.find(route => !!route)!;
+  const { file = "", body = {} } = foundFiles.find(route => !!Object.keys(route).length)!;
   Object.assign(body, req.method.toLowerCase() === "get" ? req.query : req.body);
 
   try {
