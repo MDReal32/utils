@@ -45,7 +45,7 @@ export const createServer = async (root = process.cwd(), isProd = _isProd) => {
         template = indexProd;
         render = require("./server-bundle/entry-server.js").render;
       } else {
-        const rawFile = readFileSync(resolve("client/index.html"), "utf-8");
+        const rawFile = readFileSync(resolve("index.html"), "utf-8");
         template = await vite.transformIndexHtml(url, rawFile);
         render = (await vite.ssrLoadModule("/src/entry-server.ts")).render;
       }
