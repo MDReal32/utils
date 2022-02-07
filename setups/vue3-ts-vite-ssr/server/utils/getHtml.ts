@@ -30,9 +30,9 @@ const minifierOptions: MinifierOption = {
   sortClassName: true
 };
 
-export const getHtml = async (options: Options) => {
+export const getHtml = async (options: Options, manifestFile = "../../build/client/ssr-manifest.json") => {
   const { render, isProd, url, template } = options;
-  const manifest = isProd ? require("../../build/ssr-manifest.json") : {};
+  const manifest = isProd ? require(manifestFile) : {};
 
   const { html: renderedHtml, context } = await render(url);
   const preloadLinks = renderPreloadLinks(context.modules, manifest);
