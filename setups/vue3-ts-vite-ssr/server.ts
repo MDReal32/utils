@@ -10,6 +10,8 @@ import { getHtml } from "./server/utils/getHtml";
 const isTest = process.env.NODE_ENV === "test" || !!process.env.VITE_TEST_BUILD;
 const _isProd = process.env.NODE_ENV === "production";
 
+const PORT = process.env.PORT || _isProd ? 5000 : 3000;
+
 const app = express();
 let vite: ViteDevServer;
 
