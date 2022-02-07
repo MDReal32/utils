@@ -4,6 +4,7 @@
     "useDefineForClassFields": true,
     "module": "CommonJS",
     "moduleResolution": "Node",
+    "outDir": "build",
     "strict": true,
     "jsx": "preserve",
     "sourceMap": true,
@@ -11,13 +12,5 @@
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },
-  "include": [
-    "src/**/*.ts",
-    "src/**/*.d.ts",
-    "src/**/*.tsx",
-    "src/**/*.vue",
-    "package.json",
-    "vite.config.ts",
-    "server.ts"
-  ]
+  "include": ["server/**/*.ts", "server.ts"]
 }
