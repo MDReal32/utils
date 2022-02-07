@@ -5,7 +5,7 @@ import { glob } from "glob";
 import { getHtml } from "./server/utils/getHtml";
 
 const resolve = (...p: string[]) => res(__dirname, ...p);
-const template = readFileSync("build/index.html", "utf-8");
+const template = readFileSync(resolve("build/client/index.html"), "utf-8");
 const { render } = require("./build/server-bundle/entry-server") as ServerModule;
 
 const root = resolve("src/pages");
@@ -20,13 +20,13 @@ glob(res(root, "**", "*.vue"), { cwd: root }, async (err, matches) => {
 
   for (const file of files) {
     const endpoint = `/${file.toLowerCase()}`;
-    const destinationFile = resolve(`build/${endpoint}.html`);
+    const destinationFile = resolve(`build/client/${endpoint}.html`);
 
     const html = await getHtml({ url: endpoint, render, isProd: true, template });
     writeFileSync(destinationFile, html);
   }
 
-  const destinationFile = resolve(`build/index.html`);
+  const destinationFile = resolve(`build/client/index.html`);
   const html = await getHtml({ url: "/", render, isProd: true, template });
   writeFileSync(destinationFile, html);
 });
