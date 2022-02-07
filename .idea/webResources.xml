@@ -6,6 +6,8 @@
         <entryData>
           <resourceRoots>
             <path value="file://$PROJECT_DIR$/public" />
+            <path value="file://$PROJECT_DIR$/setups/vue3-ts-vite-ssr/public" />
+            <path value="file://$PROJECT_DIR$/setups/vue3-ts-vite-ssr" />
           </resourceRoots>
         </entryData>
       </entry>
