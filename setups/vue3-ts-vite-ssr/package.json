@@ -2,13 +2,14 @@
   "name": "project-name",
   "version": "0.0.0",
   "scripts": {
-    "dev": "nodemon server",
-    "build:server": "vite build --ssr src/entry-server.ts --outDir build/server-bundle",
-    "build:client": "vue-tsc --noEmit && vite build --ssrManifest",
-    "prebuild": "rimraf build && yarn build:client && yarn build:server",
-    "build": "ts-node prerender.ts",
-    "postbuild": "rimraf build/ssr-manifest.json build/server-bundle",
-    "preview": "vite preview"
+    "start": "cross-env NODE_ENV=production node build/server",
+    "serve": "cross-env NODE_ENV=development nodemon server",
+    "prebuild": "rimraf build && yarn build:server && yarn build:client && yarn build:server-bundle",
+    "build": "ts-node prerenderer.ts",
+    "postbuild": "yarn version --patch --no-commit-hooks --no-git-tag-version",
+    "build:server": "tsc -p tsconfig.server.json",
+    "build:server-bundle": "vite build --ssr src/entry-server.ts --outDir build/server-bundle",
+    "build:client": "vue-tsc --noEmit && vite build --ssrManifest --outDir build/client"
   },
   "dependencies": {
     "axios": "^0.25.0",
