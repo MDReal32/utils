@@ -9,6 +9,12 @@
   </p>
 
   <p>
+    You can use
+    <a href="https://www.jetbrains.com/webstorm/download/" target="_blank">Webstorm</a>
+    too
+  </p>
+
+  <p>
     See
     <code>README.md</code>
     for more information.
@@ -20,7 +26,16 @@
     <a href="https://v3.vuejs.org/" target="_blank">Vue 3 Docs</a>
   </p>
 
-  <button type="button" @click="count++">count is: {{ count }}</button>
+  <p>
+    <span>Count: {{ count }}</span>
+  </p>
+
+  <p>
+    <button type="button" @click="count++">Increase</button>
+    <span>&nbsp;</span>
+    <button type="button" @click="count--">Decrease</button>
+  </p>
+
   <p>
     Edit
     <code>components/HelloWorld.vue</code>
