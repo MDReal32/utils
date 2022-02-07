@@ -68,6 +68,6 @@ export const createServer = async (root = process.cwd(), isProd = _isProd) => {
 if (!isTest) {
   (async () => {
     const { app } = await createServer();
-    app.listen(3000, () => console.log("http://localhost:3000"));
+    app.listen(PORT, () => console.log(`http://localhost:${PORT}`));
   })();
 }
