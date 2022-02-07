@@ -1,6 +1,6 @@
 {
   "name": "project-name",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
     "start": "cross-env NODE_ENV=production node build/server",
     "serve": "cross-env NODE_ENV=development nodemon server",
