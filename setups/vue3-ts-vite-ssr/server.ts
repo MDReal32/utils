@@ -26,11 +26,11 @@ export const createServer = async (root = process.cwd(), isProd = _isProd) => {
   viteConfig.root = root;
 
   // @ts-ignore
-  const indexProd = isProd ? readFileSync(resolve("dist/client/index.html"), "utf-8") : "";
+  const indexProd = isProd ? readFileSync(resolve("client/index.html"), "utf-8") : "";
 
   if (isProd) {
     app.use(compression());
-    app.use(serveStatic(resolve("dist", "client"), { index: false }));
+    app.use(serveStatic(resolve("client"), { index: false }));
   } else {
     vite = await viteCreateServer(viteConfig);
     app.use(vite.middlewares);
@@ -43,14 +43,14 @@ export const createServer = async (root = process.cwd(), isProd = _isProd) => {
     try {
       if (isProd) {
         template = indexProd;
-        render = require("./dist/server/entry-server.js").render;
+        render = require("./server-bundle/entry-server.js").render;
       } else {
-        const rawFile = readFileSync(resolve("index.html"), "utf-8");
+        const rawFile = readFileSync(resolve("client/index.html"), "utf-8");
         template = await vite.transformIndexHtml(url, rawFile);
         render = (await vite.ssrLoadModule("/src/entry-server.ts")).render;
       }
 
-      const html = await getHtml({ url, render, isProd, template });
+      const html = await getHtml({ url, render, isProd, template }, "../../client/ssr-manifest.json");
 
       res.status(200).set({ "Content-Type": "text/html" }).end(html);
     } catch (e) {
