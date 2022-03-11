@@ -21,7 +21,6 @@ glob(res(root, "**", "*.vue"), { cwd: root }, async (err, matches) => {
   for (const file of files) {
     const endpoint = `/${file.toLowerCase()}`;
     const destinationFile = resolve(`build/client/${endpoint}.html`);
-
     const html = await getHtml({ url: endpoint, render, isProd: true, template });
     writeFileSync(destinationFile, html);
   }
