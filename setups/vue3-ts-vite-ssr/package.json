@@ -1,11 +1,12 @@
 {
   "name": "project-name",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "scripts": {
-    "start": "cross-env NODE_ENV=production node build/server",
-    "serve": "cross-env NODE_ENV=development nodemon server",
+    "start": "cross-env NODE_ENV=production node build/prod",
+    "serve": "cross-env NODE_ENV=development nodemon ./server/dev",
+    "serve:prod": "cross-env NODE_ENV=development nodemon ./server/prod",
     "prebuild": "rimraf build && yarn build:server && yarn build:client && yarn build:server-bundle",
-    "build": "ts-node prerenderer.ts",
+    "build": "ts-node scripts/prerenderer.ts",
     "postbuild": "yarn version --patch --no-commit-hooks --no-git-tag-version",
     "build:server": "tsc -p tsconfig.server.json",
     "build:server-bundle": "vite build --ssr src/entry-server.ts --outDir build/server-bundle",
