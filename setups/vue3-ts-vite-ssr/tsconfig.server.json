@@ -7,10 +7,11 @@
     "outDir": "build",
     "strict": true,
     "jsx": "preserve",
-    "sourceMap": true,
+    "sourceMap": false,
     "resolveJsonModule": true,
     "esModuleInterop": true,
     "lib": ["esnext", "dom"]
   },
-  "include": ["server/**/*.ts", "server.ts"]
+  "exclude": ["server/dev.ts"],
+  "include": ["server/**/*.ts"]
 }
