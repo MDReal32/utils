@@ -10,6 +10,7 @@ interface Options {
   isProd: boolean;
   url: string;
   template: string;
+  data?: Record<string, any>;
 }
 
 const prettierOptions: PrettierOptions = {
