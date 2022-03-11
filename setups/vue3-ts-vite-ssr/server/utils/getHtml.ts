@@ -32,12 +32,15 @@ const minifierOptions: MinifierOption = {
 };
 
 export const getHtml = async (options: Options, manifestFile = "../../build/client/ssr-manifest.json") => {
-  const { render, isProd, url, template } = options;
+  const { render, isProd, url, template, data = {} } = options;
   const manifest = isProd ? require(manifestFile) : {};
 
   const { html: renderedHtml, context } = await render(url);
   const preloadLinks = renderPreloadLinks(context.modules, manifest);
-  const html = template.replace("<!-- app-html -->", renderedHtml).replace(`<!-- preload-links -->`, preloadLinks);
+  const html = template
+    .replace("<!-- app-html -->", renderedHtml)
+    .replace("<!-- preload-links -->", preloadLinks)
+    .replace("/* json-data */", JSON.stringify(data));
 
   const minifiedHtml = minify(html, minifierOptions);
   let finalHtml = minifiedHtml;
